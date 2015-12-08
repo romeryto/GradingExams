@@ -64,7 +64,7 @@ public class Main {
             System.out.println();
             if(isCorrectAnswerKey.equals("y")){
                 System.out.println(" *********>>>> GRADE STORED!!! =D =D =D <<<<********* ");
-                writeGrade(studentName, gladeFinal+"");
+                writeGrade(studentName, Double.toString(gladeFinal).replace(".", ","));
             }else{
                 System.out.println("Insert again the answerKeys to Student");
                 studentAnswerKeys = new ArrayList<String>();
