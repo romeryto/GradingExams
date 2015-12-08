@@ -33,7 +33,7 @@ public class FileOperations {
         return notas;
     }
 
-    public static void writeFile(String path, String fileName, String value) {
+    public void writeFile(String path, String fileName, String value) {
         BufferedWriter buffWrite;
         try {
             buffWrite = new BufferedWriter(new FileWriter(path+fileName,true));

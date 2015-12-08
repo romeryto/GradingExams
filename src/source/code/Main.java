@@ -1,24 +1,84 @@
 package source.code;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
     final static String GRADES_FILE = "grades.txt";
     final static String STUDENTS_FILE = "students.txt";
     final static String PATH = "./files/";
+    final static int NUMBER_OF_QUESTIONS = 20;
+    static FileOperations op;
+    static GradeExams grader;
+    static List<String> studentAnswerKeys;
 
     public static void main(String[] args) throws FileNotFoundException {
+        op = new FileOperations();
+        grader = new GradeExams();
 
-        FileOperations op = new FileOperations();
-        writeGrade("Joao", "10.0");
-        writeGrade("Maria", "12.0");
-        writeGrade("Larissa", "8.0");
+        String lineSeparator = System.getProperty("line.separator");
 
+        studentAnswerKeys = new ArrayList<String>();
+        System.out.println("============= GRADING EXAMS =============");
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Type name of student: ");
+        String studentName = Input.readLine();
+        System.out.println();
+        System.out.println("Student Name = "+studentName);
+        System.out.println();
+        String isCorrectAnswerKey = "";
+        while(!isCorrectAnswerKey.equals("y")){
+            System.out.print("Insert the *TYPE* of Test: ");
+            String type = Input.readLine();
+            System.out.println("*TYPE* of Test = "+type);
+            System.out.println();
+            System.out.println();
+            if(Integer.parseInt(type)>5 || Integer.parseInt(type)<1){
+                System.out.println("***Please insert a type between 1-5***");
+                System.out.println();
+                System.out.println();
+                continue;
+            }
+            System.out.println();
+            System.out.println(" *** INSERT THE ANSWERKEYS OF STUDENT *** ");
+            for (int i = 0; i < NUMBER_OF_QUESTIONS; i++) {
+                System.out.print(i+1 +" - ");
+                String answer = Input.readLine().toLowerCase();
+                while(answer.length()!=1 || answer.equals(lineSeparator) || answer.isEmpty() ||
+                        answer==null || !Character.isLetter(answer.charAt(0)) || !Input.isCharInRange(answer.charAt(0), 'a', 'e')){
+                    System.out.println("***Please type a valid answer***");
+                    System.out.print(i+1 +" - ");
+                    answer = Input.readLine().toLowerCase();
+                }
+                studentAnswerKeys.add(answer);
+            }
+            System.out.println();
+            System.out.println();
+            System.out.println("ANSWER KEYS = "+studentAnswerKeys);
+            double gladeFinal = grader.getGrade(studentAnswerKeys, Integer.parseInt(type));
+            System.out.println(studentName+" - FINAL GRADE: "+gladeFinal);
+            System.out.print(" =====>  Is AnswerKeys filled correctly? y(Yes) ou n(No) : ");
+            isCorrectAnswerKey = Input.readLine();
+            System.out.println();
+            if(isCorrectAnswerKey.equals("y")){
+                System.out.println(" *********>>>> GRADE STORED!!! =D =D =D <<<<********* ");
+                writeGrade(studentName, gladeFinal+"");
+            }else{
+                System.out.println("Insert again the answerKeys to Student");
+                studentAnswerKeys = new ArrayList<String>();
+            }
+        }
     }
 
     public static void writeGrade(String studentName, String grade) {
-        FileOperations op = new FileOperations();
+        op = new FileOperations();
         op.writeFile(PATH,GRADES_FILE, grade);
         op.writeFile(PATH,STUDENTS_FILE, studentName);
     }
+
+
+
+
 }
