@@ -1,7 +1,6 @@
 package source.code;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,25 +14,35 @@ public class GradeExams {
     List<String> answerKeysType4;
     List<String> answerKeysType5;
     public static final double WEIGHT_BY_QUESTION = 0.5;
+    public final static String PATH = "./files/answerKeysSC/";
     public static final int TYPE1 = 1;
     public static final int TYPE2 = 2;
     public static final int TYPE3 = 3;
     public static final int TYPE4 = 4;
     public static final int TYPE5 = 5;
+    public static final String ansKT1 = "1.txt";
+    public static final String ansKT2 = "2.txt";
+    public static final String ansKT3 = "3.txt";
+    public static final String ansKT4 = "4.txt";
+    public static final String ansKT5 = "5.txt";
+
+    FileOperations op;
 
     public GradeExams() {
+        op = new FileOperations();
         answerKeysByTypeMap = new HashMap<Integer, List<String>>();
 
-        answerKeysType1 = new ArrayList<String>(Arrays.asList("a", "b", "c", "d", "e", "a", "b", "c", "d", "e", "a",
-                "b", "c", "d", "e", "a", "b", "c", "d", "e"));
-        answerKeysType2 = new ArrayList<String>(Arrays.asList("a", "b", "c", "d", "e", "a", "b", "c", "d", "e", "a",
-                "b", "c", "d", "e", "a", "b", "c", "d", "e"));
-        answerKeysType3 = new ArrayList<String>(Arrays.asList("a", "b", "c", "d", "e", "a", "b", "c", "d", "e", "a",
-                "b", "c", "d", "e", "a", "b", "c", "d", "e"));
-        answerKeysType4 = new ArrayList<String>(Arrays.asList("x", "y", "z", "w", "o","x", "y", "z", "w", "o","x", "y",
-                "z", "w", "o","x", "y", "z", "w", "o" ));
-        answerKeysType5 = new ArrayList<String>(Arrays.asList("a", "b", "c", "d", "e", "a", "b", "c", "d", "e", "a",
-                "b", "c", "d", "e", "a", "b", "c", "d", "e"));
+        answerKeysType1 = new ArrayList<String>(op.readFile(PATH + ansKT1));
+        System.out.println("AnswerKeys TYPE 1: "+answerKeysType1);
+        answerKeysType2 = new ArrayList<String>(op.readFile(PATH + ansKT2));
+        System.out.println("AnswerKeys TYPE 2: "+answerKeysType2);
+        answerKeysType3 = new ArrayList<String>(op.readFile(PATH + ansKT3));
+        System.out.println("AnswerKeys TYPE 3: "+answerKeysType3);
+        answerKeysType4 = new ArrayList<String>(op.readFile(PATH + ansKT4));
+        System.out.println("AnswerKeys TYPE 4: "+answerKeysType4);
+        answerKeysType5 = new ArrayList<String>(op.readFile(PATH + ansKT5));
+        System.out.println("AnswerKeys TYPE 5: "+answerKeysType5);
+        System.out.println();
         setup();
     }
 
@@ -47,12 +56,14 @@ public class GradeExams {
 
     public double getGrade(List<String> studentAnswerKeys, int type) {
         double gradeFinal = 0.0;
+        System.out.println("Type -----> "+ type);
         switch (type) {
             case TYPE1:
                 gradeFinal = this.calculateGlade(studentAnswerKeys, answerKeysByTypeMap.get(TYPE1));
                 break;
             case TYPE2:
                 gradeFinal = this.calculateGlade(studentAnswerKeys, answerKeysByTypeMap.get(TYPE2));
+                break;
             case TYPE3:
                 gradeFinal = this.calculateGlade(studentAnswerKeys, answerKeysByTypeMap.get(TYPE3));
                 break;

@@ -12,24 +12,27 @@ import java.util.Scanner;
 public class FileOperations {
 
     List<String> notas;
-
+    Scanner scanner;
     public FileOperations(){
         notas = new ArrayList<String>();
+        scanner = null;
     }
 
     public List<String> readFile(String path){
-        Scanner scanner;
+        scanner = null;
+        notas = new ArrayList<String>();
         try {
             scanner = new Scanner(new FileReader(path)).useDelimiter("\\||\\n");
             while (scanner.hasNext()) {
                 String value = scanner.next();
-                this.notas.add(value.trim());
+                this.notas.add(value.trim().toLowerCase());
             }
         }
         catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        scanner.close();
         return notas;
     }
 

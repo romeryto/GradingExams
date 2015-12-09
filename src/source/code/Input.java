@@ -5,9 +5,7 @@ import java.util.Scanner;
 public class Input {
 
 
-    public Input(){
-
-    }
+    public Input(){}
 
     public static String readLine(){
         String result = "";
