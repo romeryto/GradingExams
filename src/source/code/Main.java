@@ -10,6 +10,7 @@ public class Main {
     final static String STUDENTS_FILE = "students.txt";
     final static String PATH = "./files/";
     final static int NUMBER_OF_QUESTIONS = 20;
+    final static String CSV_FILE = "csvStudentsResult.csv";
     static FileOperations op;
     static GradeExams grader;
     static List<String> studentAnswerKeys;
@@ -76,6 +77,7 @@ public class Main {
         op = new FileOperations();
         op.writeFile(PATH,GRADES_FILE, grade);
         op.writeFile(PATH,STUDENTS_FILE, studentName);
+        op.writeFile(PATH,CSV_FILE, studentName, grade);
     }
 
 

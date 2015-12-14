@@ -49,6 +49,19 @@ public class FileOperations {
         }
     }
 
+    public void writeFile(String path, String fileName, String studentName, String grade) {
+        BufferedWriter buffWrite;
+        try {
+            buffWrite = new BufferedWriter(new FileWriter(path+fileName,true));
+            buffWrite.append(studentName+"; "+ grade + "\n");
+            buffWrite.close();
+        }
+        catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
 
 
 
