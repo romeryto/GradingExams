@@ -9,6 +9,7 @@ public class Main {
     final static String GRADES_FILE = "grades.txt";
     final static String STUDENTS_FILE = "students.txt";
     final static String PATH = "./files/";
+    final static String PATH_STUDENTS_ANSWERS_AMS = "./files/studentsAnswers/AMS/";
     final static int NUMBER_OF_QUESTIONS = 20;
     final static String CSV_FILE = "csvStudentsResult.csv";
     static FileOperations op;
@@ -57,7 +58,9 @@ public class Main {
             }
             System.out.println();
             System.out.println();
-            System.out.println("ANSWER KEYS = "+studentAnswerKeys);
+            //System.out.println("ANSWER KEYS = "+studentAnswerKeys);
+            System.out.println("ANSWER KEYS = "+returnStringAnswers(studentAnswerKeys));
+            
             double gladeFinal = grader.getGrade(studentAnswerKeys, Integer.parseInt(type));
             System.out.println(studentName+" - FINAL GRADE: "+gladeFinal);
             System.out.print(" =====>  Is AnswerKeys filled correctly? y(Yes) ou n(No) : ");
@@ -66,6 +69,7 @@ public class Main {
             if(isCorrectAnswerKey.equals("y")){
                 System.out.println(" *********>>>> GRADE STORED!!! =D =D =D <<<<********* ");
                 writeGrade(studentName, Double.toString(gladeFinal).replace(".", ","));
+                writeAnswers(studentName, studentAnswerKeys);
             }else{
                 System.out.println("Insert again the answerKeys to Student");
                 studentAnswerKeys = new ArrayList<String>();
@@ -78,6 +82,18 @@ public class Main {
         op.writeFile(PATH,GRADES_FILE, grade);
         op.writeFile(PATH,STUDENTS_FILE, studentName);
         op.writeFile(PATH,CSV_FILE, studentName, grade);
+    }
+    
+    public static void writeAnswers(String studentName, List<String> answers) {
+        op = new FileOperations();
+        op.writeFile(PATH_STUDENTS_ANSWERS_AMS, studentName, answers);
+    }
+    public static String returnStringAnswers(List<String> answers) {
+    	String result = "";
+        for (int i = 0; i < answers.size(); i++) {
+			result+=(i+1)+"-"+answers.get(i)+"|";
+		}
+        return result;
     }
 
 

@@ -14,7 +14,7 @@ public class GradeExams {
     List<String> answerKeysType4;
     List<String> answerKeysType5;
     public static final double WEIGHT_BY_QUESTION = 0.5;
-    public final static String PATH = "./files/answerKeysAMS/";
+    public final static String PATH_ANSWERS = "./files/answerKeysAMS/";
     public static final int TYPE1 = 1;
     public static final int TYPE2 = 2;
     public static final int TYPE3 = 3;
@@ -32,15 +32,15 @@ public class GradeExams {
         op = new FileOperations();
         answerKeysByTypeMap = new HashMap<Integer, List<String>>();
 
-        answerKeysType1 = new ArrayList<String>(op.readFile(PATH + ansKT1));
+        answerKeysType1 = new ArrayList<String>(op.readFile(PATH_ANSWERS + ansKT1));
         System.out.println("AnswerKeys TYPE 1: "+answerKeysType1);
-        answerKeysType2 = new ArrayList<String>(op.readFile(PATH + ansKT2));
+        answerKeysType2 = new ArrayList<String>(op.readFile(PATH_ANSWERS + ansKT2));
         System.out.println("AnswerKeys TYPE 2: "+answerKeysType2);
-        answerKeysType3 = new ArrayList<String>(op.readFile(PATH + ansKT3));
+        answerKeysType3 = new ArrayList<String>(op.readFile(PATH_ANSWERS + ansKT3));
         System.out.println("AnswerKeys TYPE 3: "+answerKeysType3);
-        answerKeysType4 = new ArrayList<String>(op.readFile(PATH + ansKT4));
+        answerKeysType4 = new ArrayList<String>(op.readFile(PATH_ANSWERS + ansKT4));
         System.out.println("AnswerKeys TYPE 4: "+answerKeysType4);
-        answerKeysType5 = new ArrayList<String>(op.readFile(PATH + ansKT5));
+        answerKeysType5 = new ArrayList<String>(op.readFile(PATH_ANSWERS + ansKT5));
         System.out.println("AnswerKeys TYPE 5: "+answerKeysType5);
         System.out.println();
         setup();

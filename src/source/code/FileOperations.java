@@ -62,6 +62,25 @@ public class FileOperations {
         }
     }
 
+	public void writeFile(String path, String studentName, List<String> answers) {
+		String result = "";
+		for (String answer : answers) {
+			result+=answer+"\n";
+		}
+		
+		BufferedWriter buffWrite;
+        try {
+            buffWrite = new BufferedWriter(new FileWriter(path+studentName+".txt",true));
+            buffWrite.append(result);
+            buffWrite.close();
+        }
+        catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+		
+	}
+
 
 
 
