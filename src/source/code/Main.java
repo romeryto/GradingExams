@@ -37,7 +37,7 @@ public class Main {
             System.out.println("*TYPE* of Test = "+type);
             System.out.println();
             System.out.println();
-            if(Integer.parseInt(type)>5 || Integer.parseInt(type)<1){
+            if(Integer.parseInt(type)>6 || Integer.parseInt(type)<1){
                 System.out.println("*** Please insert a type between 1-5 ***");
                 System.out.println();
                 System.out.println();
