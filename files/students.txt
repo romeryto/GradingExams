@@ -34,5 +34,10 @@ Sterphanyohanson Silva
 Diego Sousa
 Alison Pereira
 Marcus Vinicius
+<<<<<<< HEAD
 Andre Menezes - seg cham
 Marcos Vinicius - seg cham
+=======
+Inacio Cavalcante
+Daniel Santos
+>>>>>>> cfd94df1cf4106d31d46488be7078911997ffe9f
