@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 public class Main {
 
-    final static String GRADES_FILE = "gradesGAP-P1-161.txt";
-    final static String STUDENTS_FILE = "studentsGAP-P1-161.txt";
+    final static String GRADES_FILE = "gradesSC-P1-161.txt";
+    final static String STUDENTS_FILE = "studentsSC-P1-161.txt";
     final static String PATH = "./files/";
-    final static String PATH_STUDENTS_ANSWERS = "./files/studentsAnswers/GAP/";
-    final static int NUMBER_OF_QUESTIONS = 10;
-    final static String CSV_FILE = "csvStudentsResultGAP--P1-161.csv";
+    final static String PATH_STUDENTS_ANSWERS = "./files/studentsAnswers/SC/";
+    final static int NUMBER_OF_QUESTIONS = 12;
+    final static String CSV_FILE = "csvStudentsResultSC--P1-161.csv";
     static FileOperations op;
     static GradeExams grader;
     static List<String> studentAnswerKeys;
@@ -50,7 +50,7 @@ public class Main {
                 System.out.print(i+1 +" - ");
                 String answer = Input.readLine().toLowerCase();
                 while(answer.length()!=1 || answer.equals(lineSeparator) || answer.isEmpty() ||
-                        answer==null || !Character.isLetter(answer.charAt(0)) || !Input.isCharInRange(answer.charAt(0), 'a', 'e')){
+                        answer==null || !Character.isLetter(answer.charAt(0)) || !Input.isCharInRange(answer.charAt(0), 'a', 'f')){
                     System.out.println("***Please type a valid answer***");
                     System.out.print(i+1 +" - ");
                     answer = Input.readLine().toLowerCase();
@@ -88,7 +88,7 @@ public class Main {
     
     public static void writeAnswers(String studentName, List<String> answers) {
         op = new FileOperations();
-        op.writeFile(PATH_STUDENTS_ANSWERS, studentName+"-P1-161", answers);
+        op.writeFile(PATH_STUDENTS_ANSWERS, studentName+"-SC-P1-161", answers);
     }
     public static String returnStringAnswers(List<String> answers) {
     	String result = "";

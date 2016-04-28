@@ -15,8 +15,8 @@ public class GradeExams {
     List<String> answerKeysType5;
     List<String> answerKeysType6;
     //public static final double WEIGHT_BY_QUESTION = 0.5;
-    public static final double WEIGHT_BY_QUESTION = 1.12;
-    public final static String PATH_ANSWERS = "./files/answerKeysGAP/";
+    public static final double WEIGHT_BY_QUESTION = 0.73;
+    public final static String PATH_ANSWERS = "./files/answerKeysSC/";
     public static final int TYPE1 = 1;
     public static final int TYPE2 = 2;
     public static final int TYPE3 = 3;
