@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 public class Main {
 
-    final static String GRADES_FILE = "grades.txt";
-    final static String STUDENTS_FILE = "students.txt";
+    final static String GRADES_FILE = "gradesGAP-P1-161.txt";
+    final static String STUDENTS_FILE = "studentsGAP-P1-161.txt";
     final static String PATH = "./files/";
-    final static String PATH_STUDENTS_ANSWERS_AMS = "./files/studentsAnswers/AMS/";
-    final static int NUMBER_OF_QUESTIONS = 20;
-    final static String CSV_FILE = "csvStudentsResult.csv";
+    final static String PATH_STUDENTS_ANSWERS = "./files/studentsAnswers/GAP/";
+    final static int NUMBER_OF_QUESTIONS = 10;
+    final static String CSV_FILE = "csvStudentsResultGAP--P1-161.csv";
     static FileOperations op;
     static GradeExams grader;
     static List<String> studentAnswerKeys;
@@ -34,7 +34,8 @@ public class Main {
         while(!isCorrectAnswerKey.equals("y")){
             System.out.print("Insert the *TYPE* of Test: ");
             String type = Input.readLine();
-            System.out.println("*TYPE* of Test = "+type);
+        	//String type = "6";
+        	System.out.println("*TYPE* of Test = "+type);
             System.out.println();
             System.out.println();
             if(Integer.parseInt(type)>6 || Integer.parseInt(type)<1){
@@ -62,13 +63,14 @@ public class Main {
             System.out.println("ANSWER KEYS = "+returnStringAnswers(studentAnswerKeys));
             
             double gladeFinal = grader.getGrade(studentAnswerKeys, Integer.parseInt(type));
-            System.out.println(studentName+" - FINAL GRADE: "+gladeFinal);
+            System.out.println(studentName+" - FINAL GRADE: "+String.format("%.2f", gladeFinal));
+            System.out.println("Unmatch Questions: "+grader.getUnmatchQuestions());
             System.out.print(" =====>  Is AnswerKeys filled correctly? y(Yes) ou n(No) : ");
             isCorrectAnswerKey = Input.readLine();
             System.out.println();
             if(isCorrectAnswerKey.equals("y")){
                 System.out.println(" *********>>>> GRADE STORED!!! =D =D =D <<<<********* ");
-                writeGrade(studentName, Double.toString(gladeFinal).replace(".", ","));
+                writeGrade(studentName, String.format("%.2f", gladeFinal).replace(".", ","));
                 writeAnswers(studentName, studentAnswerKeys);
             }else{
                 System.out.println("Insert again the answerKeys to Student");
@@ -86,7 +88,7 @@ public class Main {
     
     public static void writeAnswers(String studentName, List<String> answers) {
         op = new FileOperations();
-        op.writeFile(PATH_STUDENTS_ANSWERS_AMS, studentName, answers);
+        op.writeFile(PATH_STUDENTS_ANSWERS, studentName+"-P1-161", answers);
     }
     public static String returnStringAnswers(List<String> answers) {
     	String result = "";

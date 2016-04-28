@@ -14,20 +14,22 @@ public class GradeExams {
     List<String> answerKeysType4;
     List<String> answerKeysType5;
     List<String> answerKeysType6;
-    public static final double WEIGHT_BY_QUESTION = 0.5;
-    public final static String PATH_ANSWERS = "./files/answerKeysAMS/";
+    //public static final double WEIGHT_BY_QUESTION = 0.5;
+    public static final double WEIGHT_BY_QUESTION = 1.12;
+    public final static String PATH_ANSWERS = "./files/answerKeysGAP/";
     public static final int TYPE1 = 1;
     public static final int TYPE2 = 2;
     public static final int TYPE3 = 3;
     public static final int TYPE4 = 4;
     public static final int TYPE5 = 5;
     private static final int TYPE6 = 6;
-    public static final String ansKT1 = "1.txt";
-    public static final String ansKT2 = "2.txt";
+    public static final String ansKT1 = "A.txt";
+    public static final String ansKT2 = "B.txt";
     public static final String ansKT3 = "3.txt";
     public static final String ansKT4 = "4.txt";
     public static final String ansKT5 = "5.txt";
-    public static final String ansKT6 = "SegCham.txt";
+    public static final String ansKT6 = "mt1.txt";
+    List<Integer> unmatchQuestions;
 	
 
     FileOperations op;
@@ -46,9 +48,10 @@ public class GradeExams {
         System.out.println("AnswerKeys TYPE 4: "+answerKeysType4);
         answerKeysType5 = new ArrayList<String>(op.readFile(PATH_ANSWERS + ansKT5));
         System.out.println("AnswerKeys TYPE 5: "+answerKeysType5);
+        unmatchQuestions = new ArrayList<Integer>();
         
         answerKeysType6 = new ArrayList<String>(op.readFile(PATH_ANSWERS + ansKT6));
-        System.out.println("AnswerKeys TYPE 6-SegCham: "+answerKeysType6);
+        System.out.println("AnswerKeys TYPE 6-Final: "+answerKeysType6);
         
         System.out.println();
         setup();
@@ -100,10 +103,16 @@ public class GradeExams {
             String oficialAnswer = oficialAnswerKeys.get(i);
             if(studentAnswer.equals(oficialAnswer)){
                 numberOfMaches++;
+            }else{
+            	unmatchQuestions.add(i+1);
             }
         }
         System.out.println("NumberOfMatches: "+numberOfMaches);
         return numberOfMaches*WEIGHT_BY_QUESTION;
     }
+
+	public List<Integer> getUnmatchQuestions() {
+		return unmatchQuestions;
+	}  
 
 }
